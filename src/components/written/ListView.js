@@ -3,7 +3,7 @@ import DetailView from './DetailView'
 import NiceImg from './NiceImg'
 
 
-export default ({chars=[]})=>{
+export default ({chars=[], onClick})=>{
 
     function renderChars(){
         return chars.map(char=>{
@@ -14,7 +14,7 @@ export default ({chars=[]})=>{
     }
 
     return (
-        <div>
+        <div onClick={onClick}>
             <h1>Los mortys:</h1>
             <div  style={{
                 display:"flex",

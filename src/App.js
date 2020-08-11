@@ -1,24 +1,22 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {compose} from 'redux'
+// import withConsole from './components/written/withConsole'
+// import withMortys from './components/written/withMortys'
+// import ListView from './components/written/ListView'
+
 
 function App() {
+
+  // const SortOfMixin = compose(
+  //   withConsole,
+  //   withMortys
+  // )(ListView)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      Bliss
     </div>
   );
 }

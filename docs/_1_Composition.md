@@ -149,12 +149,38 @@ Las props y la composición te dan toda la flexibilidad que necesitas para perso
 
 Si quieres reutilizar funcionalidad que no es de interfaz entre componentes, sugerimos que la extraigas en un módulo de JavaScript independiente. Los componentes pueden importarlo y usar esa función, objeto, o clase, sin extenderla.
 
+## Consideraciones con HOCs
+
+### No uses HOCs dentro del método render
+
+El algoritmo de detección de diferencias de React (llamado reconciliación) utiliza la identidad del componente para determinar si debe actualizar el subárbol existente o desecharlo y montar uno nuevo. Si el componente devuelto por render es idéntico (===) al componente de la llamada a render previa, React actualiza el subárbol calculando las diferencias con el nuevo. Si no son iguales, el subárbol anterior es desmontado completamente.
+
+Normalmente no es necesario pensar acerca de esto. Pero importa para los HOCs porque significa que no puedes aplicar un HOC a un componente dentro del método render de otro componente:
+
+```
+render() {
+  // Una nueva versión de EnhancedComponent es creada en cada render
+  // EnhancedComponent1 !== EnhancedComponent2
+  const EnhancedComponent = enhance(MyComponent);
+  // Esto causa que el subárbol entero se desmonte/monte cada vez!
+  return <EnhancedComponent />;
+}
+```
+El problema aquí mostrado no es tan solo acerca del rendimiento, desmontar un componente causa que el estado de ese componente y de todos sus hijos se pierda.
+
+En su lugar, aplica los HOCs por fuera de la definición del componente de manera que el componente resultante se creado solo una vez. De esta forma su identidad será consistente entre llamadas a render. Esto, de todas formas, es lo que usualmente deseas.
+
+En aquellos casos extraños donde necesites aplicar un HOC de forma dinámica, también puedes hacerlo en los métodos del ciclo de vida, o en su constructor.
+
+
+
 
 ## Más sobre el tema:
 ---
 * [Documentación oficial](https://reactjs.org/docs/composition-vs-inheritance.html#gatsby-focus-wrapper)
 * [Tutorial](https://programmingwithmosh.com/react/react-composition-vs-inheritance/)
 * [HOCs](https://reactjs.org/docs/higher-order-components.html)
+* [Don't use mixins](https://es.reactjs.org/blog/2016/07/13/mixins-considered-harmful.html)
 
 Happy Coding!  ❤
 

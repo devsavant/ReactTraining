@@ -25,7 +25,7 @@ export default function withMortys(WrappedComponent){
 
         render(){
             return (
-                <WrappedComponent chars={this.state.chars} />
+                <WrappedComponent chars={this.state.chars} {...this.props}/>
             )
         }
 
