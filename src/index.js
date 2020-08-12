@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import useAuthContext from './components/Forms/useAuthContext'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <useAuthContext>
+      <App />
+    </useAuthContext>
   </React.StrictMode>,
   document.getElementById('root')
 );
