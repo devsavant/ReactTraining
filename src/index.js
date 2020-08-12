@@ -3,17 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import useAuthContext from './components/Forms/useAuthContext'
-
-const AppWithContext = () => {
-  const Provider = useAuthContext()
-  return (<Provider><App/></Provider>)
-
-}
+import {AuthContextProvider} from './components/Forms/useAuthContext'
 
 ReactDOM.render(
   <React.StrictMode>
-      <AppWithContext />
+      <AuthContextProvider >
+        <App/>
+      </AuthContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
