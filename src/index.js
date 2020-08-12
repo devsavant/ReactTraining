@@ -5,11 +5,15 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import useAuthContext from './components/Forms/useAuthContext'
 
+const AppWithContext = () => {
+  const Provider = useAuthContext()
+  return (<Provider><App/></Provider>)
+
+}
+
 ReactDOM.render(
   <React.StrictMode>
-    <useAuthContext>
-      <App />
-    </useAuthContext>
+      <AppWithContext />
   </React.StrictMode>,
   document.getElementById('root')
 );

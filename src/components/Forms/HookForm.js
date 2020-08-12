@@ -4,7 +4,6 @@ import {AuthContext} from './useAuthContext'
 const HookForm = (props) => {
 
     let {state, handleChange} = useContext(AuthContext)
-    console.log(state)
  
     // let [state, setState] = useState({email:"", pass:""})
     // let [state, setState] = useReducer(reducer, {email:"", pass:""})
@@ -22,9 +21,7 @@ const HookForm = (props) => {
 
     function onChange(event){
         let {name, value} = event.target
-        if(name==="email"){
-            handleChange(name,value)
-        }
+        handleChange(name,value)
         // setState({...state, [name]:value}) // agregar responsabilidades
         // setEmail(value)
     }

@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react';
 
 export const AuthContext = createContext({email:"", pass:""})
 
-const UseAuthContext = ({children}) => {
+const useAuthContext = () => {
 
     const [state, setState] = useState({email:"", pass:""})
 
@@ -10,7 +10,7 @@ const UseAuthContext = ({children}) => {
         setState({...state, [name]:value})
     }
 
-   return (<AuthContext.Provider value={{
+   return ({children})=>(<AuthContext.Provider value={{
        state,
        handleChange
    }}>
@@ -18,4 +18,4 @@ const UseAuthContext = ({children}) => {
         </AuthContext.Provider>)
 }
  
-export default UseAuthContext;
+export default useAuthContext;
