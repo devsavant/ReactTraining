@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Route} from 'react-router-dom'
 
 class SimpleForm extends Component {
 
@@ -26,6 +27,10 @@ class SimpleForm extends Component {
                 </h2>
                 <input name="email" onChange={this.onChange} placeholder="email" />
                 <input name="pass"  onChange={this.onChange}  placeholder="pass" />
+           
+                <Route path="/login/new" render={()=>(
+                    <h3>Coincido!</h3>
+                )} />
             </div>
          );
     }
