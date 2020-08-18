@@ -3,13 +3,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+<<<<<<< HEAD
 // import useAuthContext from './components/Forms/useAuthContext';
 import {BrowserRouter,} from 'react-router-dom';
+=======
+import {AuthContextProvider} from './components/Forms/useAuthContext'
+import { BrowserRouter } from 'react-router-dom'
+>>>>>>> master
 
 ReactDOM.render(
   <BrowserRouter>
     <React.StrictMode>
+<<<<<<< HEAD
       <App />
+=======
+        <AuthContextProvider >
+          <App/>
+        </AuthContextProvider>
+>>>>>>> master
     </React.StrictMode>
   </BrowserRouter>,
   document.getElementById('root')

@@ -37,7 +37,7 @@
   }
 }
 
-.active-link {
-  background-color: black;
-  color: orange;
+.active-link{
+  background-color: #282c34;
+  color:orange;
 }

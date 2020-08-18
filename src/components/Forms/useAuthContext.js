@@ -1,19 +1,20 @@
-import React, { useState, createContext } from 'react';
+import React, { createContext, useState } from 'react';
 
-const AuthContext = createContext({})
+const AuthContext = createContext({email:"", pass:""})
 
 const AuthContextProvider = ({children}) => {
+    const [state, setState] = useState({email:"", pass:""})
 
-  const [state, setState] = useState[{ email :'', pass: '' }]
+    function handleChange(name,value){
+        setState({...state, [name]:value})
+    }
 
-  function handleChange(name, value) {
-    setState({...state, [name]: value })
-  }
-
-  return(
-    <AuthContext.Provider value={state}>
-      {children}
-    </AuthContext.Provider>)
+   return (<AuthContext.Provider value={{
+       state,
+       handleChange
+   }}>
+            {children}
+        </AuthContext.Provider>)
 }
 
-export default AuthContextProvider;
+export {AuthContext, AuthContextProvider};
