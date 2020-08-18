@@ -1,16 +1,16 @@
 import React, { useState, createContext, useContext } from 'react';
 import Switch from './Switch';
 
-const SwitchStatusContext = createContext({ on: true });
+const SwitchStatusContext = createContext();
 
 const SwitchHook = (props) => {
-    const [state, setState] = useState({ on: true })
+    const [on, setOn] = useState(true)
     function toggle() {
-        setState({ ...state, on: !state.on });
+        setOn(!on)
     }
     return (
         <SwitchStatusContext.Provider value={{
-            state, toggle
+            on, toggle
         }}>
             {props.children}
         </SwitchStatusContext.Provider>
@@ -18,19 +18,18 @@ const SwitchHook = (props) => {
 }
 
 const On = (props) => {
-    const { state } = useContext(SwitchStatusContext)
-    console.log(state)
-    return state.on ? props.children : null
+    const { on } = useContext(SwitchStatusContext)
+    return on ? props.children : null
     }
 
 const Off = (props) => {
-    const { state } = useContext(SwitchStatusContext)
-    return !state.on ? props.children : null
+    const { on } = useContext(SwitchStatusContext)
+    return !on ? props.children : null
     }
 
 const Button = (props) => {
-    const { state, toggle } = useContext(SwitchStatusContext)
-    return <Switch {...props} on={state.on} onClick={toggle} />}
+    const { on, toggle } = useContext(SwitchStatusContext)
+    return <Switch {...props} on={on} onClick={toggle} />}
 
 
 export default SwitchHook;
