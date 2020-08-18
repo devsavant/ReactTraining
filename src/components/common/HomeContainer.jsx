@@ -16,7 +16,7 @@ class HomeContainer extends Component { // advanced composition -- Hiper reusabl
 
     static Button = (props) => (<ToggleContext.Consumer>
         {contextValue=><Switch {...props} on={contextValue.on} onClick={contextValue.toggle} />}
-    </ToggleContext.Consumer>) 
+    </ToggleContext.Consumer>)
 
     state = { on: true }
 
@@ -24,12 +24,13 @@ class HomeContainer extends Component { // advanced composition -- Hiper reusabl
         this.setState(currentState=>({on:!currentState.on}))
     }
 
-    render() { 
+    render() {
+        console.log(this.props.children)
         return <ToggleContext.Provider
          value={{on:this.state.on, toggle:this.toggle}}>
             {this.props.children}
         </ToggleContext.Provider>
     }
 }
- 
+
 export default HomeContainer;

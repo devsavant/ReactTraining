@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 // import Routes from './Routes';
-import HomeContainer from './components/common/HomeContainer';
+import SwitchHook, { On, Off, Button } from './components/compoundComponents/SwitchHook';
 
 
 function App() {
@@ -14,13 +14,11 @@ function App() {
       height:"100vh"
     }}>
       {/* <Routes /> */}
-      <HomeContainer >
-        <div>
-          <HomeContainer.Button/>
-        </div>
-        <HomeContainer.On>The button is on</HomeContainer.On>
-        <HomeContainer.Off>The button is off</HomeContainer.Off>
-      </HomeContainer>
+      <SwitchHook>
+        <Button/>
+        <On>The button is on</On>
+        <Off>The button is off</Off>
+      </SwitchHook>
     </div>
   );
 }
