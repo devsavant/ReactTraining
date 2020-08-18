@@ -4,8 +4,6 @@ import Switch from './Switch';
 const SwitchStatusContext = createContext({ on: true });
 
 const SwitchHook = (props) => {
-    console.log("aqui si")
-    console.log(props.chilren)
     const [state, setState] = useState({ on: true })
     function toggle() {
         setState({ ...state, on: !state.on });
@@ -14,20 +12,20 @@ const SwitchHook = (props) => {
         <SwitchStatusContext.Provider value={{
             state, toggle
         }}>
-            {props.chilren}
+            {props.children}
         </SwitchStatusContext.Provider>
     )
 }
 
 const On = (props) => {
-    console.log("llego a on", props)
     const { state } = useContext(SwitchStatusContext)
-    return state.on ? props.chilren : null
+    console.log(state)
+    return state.on ? props.children : null
     }
 
 const Off = (props) => {
     const { state } = useContext(SwitchStatusContext)
-    return state.on ? props.chilren : null
+    return !state.on ? props.children : null
     }
 
 const Button = (props) => {
