@@ -2,9 +2,13 @@ import React from 'react';
 import './App.css';
 // import Routes from './Routes';
 import HomeContainer from './components/common/HomeContainer';
+import List from './components/common/List';
+import Form1 from './components/Forms/Form1';
 
 
 function App() {
+
+  const onToggle = (...rest) => console.log(...rest)
 
   return (
     <div style={{
@@ -13,14 +17,8 @@ function App() {
       alignItems:"center",
       height:"100vh"
     }}>
-      {/* <Routes /> */}
-      <HomeContainer >
-        <div>
-          <HomeContainer.Button/>
-        </div>
-        <HomeContainer.On>The button is on</HomeContainer.On>
-        <HomeContainer.Off>The button is off</HomeContainer.Off>
-      </HomeContainer>
+
+      <Form1/>
     </div>
   );
 }
