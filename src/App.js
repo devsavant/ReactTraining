@@ -2,8 +2,7 @@ import React from 'react';
 import './App.css';
 // import Routes from './Routes';
 import SwitchHook, { On, Off, Button } from './components/compoundComponents/SwitchHook';
-
-
+import Form1 from './components/Forms/Form1'
 function App() {
 
   return (
@@ -14,11 +13,12 @@ function App() {
       height:"100vh"
     }}>
       {/* <Routes /> */}
-      <SwitchHook>
+      {/* <SwitchHook>
         <Button/>
         <On>The button is on</On>
         <Off>The button is off</Off>
-      </SwitchHook>
+      </SwitchHook> */}
+      <Form1 />
     </div>
   );
 }
