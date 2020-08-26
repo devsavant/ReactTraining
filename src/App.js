@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-// import Routes from './Routes';
-import HomeContainer from './components/common/HomeContainer';
-import List from './components/common/List';
-import Form1 from './components/Forms/Form1';
+import Cicle from './components/life/Cicle';
+import FunctionCicle from './components/life/FunctionCicle';
+import Routes from './Routes';
+import { NavLink } from 'react-router-dom';
 
 
 function App() {
@@ -17,8 +17,19 @@ function App() {
       alignItems:"center",
       height:"100vh"
     }}>
-
-      <Form1/>
+      {/* <NavLink to="/" >
+        home
+      </NavLink>
+      {" | "}
+      <NavLink to="/classtimer" >
+        ClassTimer
+      </NavLink>
+      {" | "}
+      <NavLink to="/timer" >
+        timer
+      </NavLink>
+      <Cicle /> */}
+      <Routes />
     </div>
   );
 }

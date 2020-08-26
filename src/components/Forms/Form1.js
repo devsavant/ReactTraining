@@ -11,27 +11,14 @@ const Form1 = (props    ) => {
         terms:true
     })
 
-    function validateForm(){
-        let errs = {}
-        if(!form.email) {
-            errs.email = "Campo obligatoria"
-        } else if(form.email.length>8 && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(form.email)){
-            errs.email = "Esto no tiene forma de correo"
-        }
-        if(!form.password){
-            errs.password = "Este campo es obligatorio"
-        }
-        setErrors(errs)
-    }
-
     const onChange = (ev) => {
         handleChange(ev)
         validateForm()
     }
 
     return ( 
-        <form >
-            <h2>{JSON.stringify(form)}</h2>
+        <form onSubmit={e=>e.preventDefault()}>
+            {/* <h2>{JSON.stringify(form)}</h2> */}
             <input value={form.email} onChange={onChange} placeholder="escribe tu mail" name="email"/>
             <p style={{color:"red"}}>{errors.email}</p>
             <br/>
