@@ -6,6 +6,7 @@ import HomePage from './components/common/HomePage';
 import FunctionCicle from './components/life/FunctionCicle';
 import Cicle from './components/life/Cicle';
 import CharsPage from './components/Requests/CharsPages';
+import FormPage from './components/equipoA/FormPage';
 
 function PriveRoute(props){ // HOC
     let isLoggedIn = true  // consigue la info de validación
@@ -13,15 +14,17 @@ function PriveRoute(props){ // HOC
 }
 
 const Routes = () => {
-    return (  
+    return (
         <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/login" component={SimpleForm} />
             <Route path="/timer" component={FunctionCicle} />
             <Route path="/classtimer" component={Cicle} />
             <PriveRoute path="/chars" component={CharsPage} />
+            <Route path="/equipoA/:id" component={FormPage} />
+            <Route path="/equipoA" component={FormPage} />
         </Switch>
     );
 }
- 
+
 export default Routes;
