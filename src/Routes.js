@@ -8,7 +8,7 @@ import Cicle from './components/life/Cicle';
 import CharsPage from './components/Requests/CharsPages';
 
 function PriveRoute(props){ // HOC
-    let isLoggedIn = false  // consigue la info de validación
+    let isLoggedIn = true  // consigue la info de validación
     return isLoggedIn ? <Route {...props}  /> : <Redirect to="/login" /> // 
 }
 
