@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import CharDisplay from './CharDisplay';
+import { useHistory } from 'react-router-dom'
 
 const CharsContainer = (props) => {
     const [chars, setChars] = useState([])
+    const history = useHistory()
 
     useEffect(()=>{
         getChars()
@@ -34,9 +36,10 @@ const CharsContainer = (props) => {
 
     return ( 
         <div>
+            <h2 onClick={()=>history.goBack()} >Volver</h2>
             {renderChars()}
         </div>
      );
 }
  
-export default CharsContainer;
+export default CharsContainer

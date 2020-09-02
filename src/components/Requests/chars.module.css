@@ -1,0 +1,9 @@
+.card{
+    box-shadow: 2px 1px 1px;
+    border-radius: 5px;
+    padding:10px;
+}
+
+.otra{
+    color:red;
+}
