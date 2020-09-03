@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 function useForm(initial={}){
     const [state, setState] = useState(initial)
-    consr [errors, setErrors]
+
 
     function validateForm(){
         let errs = {}
