@@ -21,6 +21,7 @@ const Routes = () => {
             <Route path="/timer" component={FunctionCicle} />
             <Route path="/classtimer" component={Cicle} />
             <PriveRoute path="/chars" component={CharsPage} />
+            <Route path="/grupoB/:id" component={GrupoBContainer} />
             <Route path="/grupoB" component={GrupoBContainer} />
         </Switch>
     );
