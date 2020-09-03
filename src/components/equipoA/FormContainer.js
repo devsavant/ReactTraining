@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import FormDisplay from './FormDisplay'
 
 
@@ -7,6 +7,8 @@ const FormContainer = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({ title: '', body: '', price: 0 })
   const [errors, setErrors] = useState({})
+  const history = useHistory();
+
   useEffect(()=> {
     fetch(`https://backend-panel.herokuapp.com/products/${id ? id : ''}`, { method: 'GET' })
       .then(response => response.json()
@@ -25,7 +27,6 @@ const FormContainer = () => {
   const validateField = (name, value) => {
     switch (name) {
       case 'title':
-        console.log('llego')
         if (value.length < 3) {
           setErrors({...errors, title: 'El título debe ser de al menos 3 caracteres'})
         } else {
@@ -68,7 +69,10 @@ const FormContainer = () => {
       }
     })
       .then(response => response.json()
-      .then(() => alert (`Producto ${ id ? 'actualizado' : 'creado' } con éxito`)))
+      .then((data) => {
+        alert (`Producto ${ id ? 'actualizado' : 'creado' } con éxito \n ID: ${data.result._id}`)
+        if (!id) setTimeout(() => history.push(`/equipoA/${data.result._id}`), 3000)
+      }))
   }
 
   return (
