@@ -16,13 +16,40 @@ const HandleForm = (productoId) => {
     }
   };
   
-  const handleSubmit = () => {
+  const createProduct = async () => {
+    try {
+        await axios.post(`https://backend-panel.herokuapp.com/products`,
+        {
+          title: producto.title,
+          body:  producto.body,
+          price: producto.price
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+  const updateProduct = async () => {
+    try {
+        await axios.patch(`https://backend-panel.herokuapp.com/products/${productoId}`,
+        {
+          title: producto.title,
+          body:  producto.body,
+          price: producto.price
+        });
+      
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+  const handleSubmit = async () => {
     validateForm();
     if(!Object.keys(errors).length && Object.keys(producto).length >= 3) {
       if(productoId) {
-        console.log('Update', producto);
+       await updateProduct();
       }else{
-        console.log('Create', producto);
+       await createProduct();
       }
     }
   };
@@ -48,7 +75,6 @@ const HandleForm = (productoId) => {
       errs.price = "Este campo es obligatorio"
     }
     setErrors(errs)
-    
   };
   
   const handleChange = (event) => {

@@ -41,6 +41,7 @@ const Form = ({ productoId }) => {
   };
   
     return (
+      <>
         <form >
             <div>
             <TextField
@@ -48,7 +49,7 @@ const Form = ({ productoId }) => {
               type="text"
               label="Title"
               name="title"
-              value={producto.title}
+              value={producto.title || ''}
               required
               helperText={errors.title}
               onChange={handleChange}
@@ -61,7 +62,7 @@ const Form = ({ productoId }) => {
               type="text"
               label="Body"
               name="body"
-              value={producto.body}
+              value={producto.body  || ''}
               required
               helperText={errors.body}
               onChange={handleChange}
@@ -74,7 +75,7 @@ const Form = ({ productoId }) => {
               type="number"
               label="Price"
               name="price"
-              value={producto.price}
+              value={producto.price  || ''}
               required
               helperText={errors.price}
               onChange={handleChange}
@@ -84,6 +85,7 @@ const Form = ({ productoId }) => {
             { optionSubmit() }
            
         </form>
+        </>
      );
 };
 
