@@ -6,6 +6,7 @@ import HomePage from './components/common/HomePage';
 import FunctionCicle from './components/life/FunctionCicle';
 import Cicle from './components/life/Cicle';
 import CharsPage from './components/Requests/CharsPages';
+import HomeTwo from './components/HomeTwo';
 
 function PriveRoute(props){ // HOC
     let isLoggedIn = true  // consigue la info de validación
@@ -15,7 +16,7 @@ function PriveRoute(props){ // HOC
 const Routes = () => {
     return (  
         <Switch>
-            <Route exact path="/" component={HomePage} />
+            <Route exact path="/" component={HomeTwo} />
             <Route path="/login" component={SimpleForm} />
             <Route path="/timer" component={FunctionCicle} />
             <Route path="/classtimer" component={Cicle} />
