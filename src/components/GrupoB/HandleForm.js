@@ -62,13 +62,13 @@ const HandleForm = (productoId) => {
     else if(!producto.title.length) {
       errs.title = "Este campo es obligatorio"
     }
-    else if(!producto.body){
+    if(!producto.body){
       errs.body = "Este campo es obligatorio"
     }
     else if(!producto.body.length){
       errs.body = "Este campo es obligatorio"
     }
-    else if(!producto.price){
+    if(!producto.price){
       errs.price = "Este campo es obligatorio"
     }
     else if(producto.price < 0){
