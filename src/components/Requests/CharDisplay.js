@@ -1,9 +1,11 @@
 import React from 'react';
 import styles, {otra} from './chars.module.css';
+import {Link} from 'react-router-dom'
 
 const CharDisplay = ({name, char}) => {
     return ( 
         <div className={styles.card} >
+             <Link to="/" >Home</Link>
             <h2 className={otra} >Personaje : {name}</h2>
         </div>
      );
