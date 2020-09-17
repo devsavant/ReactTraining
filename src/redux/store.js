@@ -1,10 +1,12 @@
 import { createStore, applyMiddleware, combineReducers } from "redux"
 import { composeWithDevTools } from 'redux-devtools-extension';
 import userReducer from './userDuck'
+import galleryReducer from './Guillo/reducers/gallery';
 import thunk from 'redux-thunk'
 
 const rootReducer = combineReducers({
-    user:userReducer
+    user:userReducer,
+    gallery:galleryReducer,
 })
 
 export default () => {
