@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import CharDisplay from './CharDisplay';
+import React, { useEffect } from 'react'
+import CharDisplay from './CharDisplay'
 import { useHistory } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { getCharsAction } from '../../redux/charsDuck'
 
-const CharsContainer = (props) => {
-    const [chars, setChars] = useState([])
+const CharsContainer = ({chars, fetching, getCharsAction}) => {
     const history = useHistory()
 
     useEffect(()=>{
-        getChars()
+        getCharsAction()
     },[])
 
     const renderChar = (char, index) => {
@@ -18,28 +19,19 @@ const CharsContainer = (props) => {
         return chars.map(renderChar)
     }
 
-    const getChars = () => {
-        fetch("https://rickandmortyapi.com/graphql", {
-            method:"post",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify(
-                {"query":"{characters\n{results{\nid\n name\n image\n species}}}"}
-            )
-        })
-        .then(r=>r.json())
-        .then(response=>{
-            setChars(response.data.characters?.results)
-        })
-    }
-
     return ( 
         <div>
             <h2 onClick={()=>history.goBack()} >Volver</h2>
-            {renderChars()}
+            { !fetching ? renderChars() : <img src="https://flevix.com/wp-content/uploads/2020/01/Preloader.gif" /> }
         </div>
      );
 }
+
+function mapState({chars:{array, fetching}}){
+    return {
+        chars: array,
+        fetching
+    }
+}
  
-export default CharsContainer
+export default connect(mapState, {getCharsAction})(CharsContainer)

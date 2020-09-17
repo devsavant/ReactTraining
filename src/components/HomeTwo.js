@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { transformTokenAction, transformDisplayNameAction } from '../redux/userDuck'
+import { transformTokenAction } from '../redux/userDuck'
+import { Link } from 'react-router-dom'
 
 const HomeTwo = ({ token, displayName, transformTokenAction, transformDisplayNameAction }) => {
 
@@ -14,6 +15,7 @@ const HomeTwo = ({ token, displayName, transformTokenAction, transformDisplayNam
 
     return (
         <div>
+            <Link to="/chars" >Chars</Link>
             <h2>Home with redux, welcome {displayName}</h2>
             <h3>{token}</h3>
             <label for="displayName">Tu nombrecito:</label>
