@@ -1,9 +1,14 @@
 import React from 'react';
 import './App.css';
-// import Routes from './Routes';
-import SwitchHook, { On, Off, Button } from './components/compoundComponents/SwitchHook';
-import Form1 from './components/Forms/Form1'
+import Cicle from './components/life/Cicle';
+import FunctionCicle from './components/life/FunctionCicle';
+import Routes from './Routes';
+import { NavLink } from 'react-router-dom';
+
+
 function App() {
+
+  const onToggle = (...rest) => console.log(...rest)
 
   return (
     <div style={{
@@ -12,13 +17,19 @@ function App() {
       alignItems:"center",
       height:"100vh"
     }}>
-      {/* <Routes /> */}
-      {/* <SwitchHook>
-        <Button/>
-        <On>The button is on</On>
-        <Off>The button is off</Off>
-      </SwitchHook> */}
-      <Form1 />
+      {/* <NavLink to="/" >
+        home
+      </NavLink>
+      {" | "}
+      <NavLink to="/classtimer" >
+        ClassTimer
+      </NavLink>
+      {" | "}
+      <NavLink to="/timer" >
+        timer
+      </NavLink>
+      <Cicle /> */}
+      <Routes />
     </div>
   );
 }

@@ -3,14 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {AuthContextProvider} from './components/Forms/useAuthContext'
-import { BrowserRouter } from 'react-router-dom'
+import {AuthContextProvider} from './components/Forms/useAuthContext';
+import { BrowserRouter } from 'react-router-dom';
+import generateStore from './redux/store'
+import { Provider } from 'react-redux'
+
+const store = generateStore()
+
+const WithRedux = () => <Provider store={store}><App/></Provider>
 
 ReactDOM.render(
   <BrowserRouter>
     <React.StrictMode>
         <AuthContextProvider >
-          <App/>
+          <WithRedux />
         </AuthContextProvider>
     </React.StrictMode>
   </BrowserRouter>,

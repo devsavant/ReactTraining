@@ -21,7 +21,9 @@ class HomeContainer extends Component { // advanced composition -- Hiper reusabl
     state = { on: true }
 
     toggle = () => {
-        this.setState(currentState=>({on:!currentState.on}))
+        this.setState(({on})=>({on:!on}), ()=>{
+            this.props.onToggle(this.state.on)
+        })
     }
 
     render() {
