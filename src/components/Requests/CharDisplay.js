@@ -1,8 +1,12 @@
-import React from 'react';
-import styles, {otra} from './chars.module.css';
+import React from 'react'
+import styles, {otra} from './chars.module.css'
 import {Link} from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-const CharDisplay = ({name, char}) => {
+const CharDisplay = ({id}) => {
+    const name = useSelector(state=>{
+        return state.chars.array[id].name
+    })
     return ( 
         <div className={styles.card} >
              <Link to="/" >Home</Link>

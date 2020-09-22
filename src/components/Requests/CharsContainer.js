@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react'
 import CharDisplay from './CharDisplay'
 import { useHistory } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { getCharsAction } from '../../redux/charsDuck'
 
-const CharsContainer = ({chars, fetching, getCharsAction}) => {
+const CharsContainer = () => {
     const history = useHistory()
+    const [chars, fetching] = useSelector(state=>[state.chars.array, state.chars.fetching])
+    const dispatch = useDispatch()
 
     useEffect(()=>{
-        getCharsAction()
+        dispatch(getCharsAction())
     },[])
 
     const renderChar = (char, index) => {
-        return <CharDisplay key={index} {...char} char={char} />
+        return <CharDisplay key={index} id={index} />
     }
 
     const renderChars = () => {
@@ -27,11 +29,4 @@ const CharsContainer = ({chars, fetching, getCharsAction}) => {
      );
 }
 
-function mapState({chars:{array, fetching}}){
-    return {
-        chars: array,
-        fetching
-    }
-}
- 
-export default connect(mapState, {getCharsAction})(CharsContainer)
+export default CharsContainer

@@ -1,15 +1,10 @@
 import React from 'react';
 import './App.css';
-import Cicle from './components/life/Cicle';
-import FunctionCicle from './components/life/FunctionCicle';
-import Routes from './Routes';
-import { NavLink } from 'react-router-dom';
-
+// import Routes from './Routes';
+import {useDispatch} from 'react-redux'
 
 function App() {
-
-  const onToggle = (...rest) => console.log(...rest)
-
+  const dispatch = useDispatch()
   return (
     <div style={{
       display:"flex",
@@ -17,19 +12,12 @@ function App() {
       alignItems:"center",
       height:"100vh"
     }}>
-      {/* <NavLink to="/" >
-        home
-      </NavLink>
-      {" | "}
-      <NavLink to="/classtimer" >
-        ClassTimer
-      </NavLink>
-      {" | "}
-      <NavLink to="/timer" >
-        timer
-      </NavLink>
-      <Cicle /> */}
-      <Routes />
+      {/* <Routes /> */}
+      <button onClick={()=>{
+        dispatch({type:"FETCH_CHARS"}) // la mas grande ventaja => ya no tengo importar thunks
+      }} >
+        FEtch!
+      </button>
     </div>
   );
 }
