@@ -1,7 +1,10 @@
 import {ajax} from 'rxjs/ajax'
 import {ignoreElements, tap,
-     map,
+    map,
     switchMap,
+    debounceTime, 
+    filter,
+    catchError
 } from 'rxjs/operators'
 import {
     ofType
@@ -11,7 +14,8 @@ import {of, concat} from 'rxjs'
 const initialData = {
     name: "Guillito",
     chars:[],
-    status:"idle" // idle || fetching || success
+    status:"idle", // idle || fetching || success
+    error:null
 }
 
 const API = "https://rickandmortyapi.com/api/character"
@@ -25,14 +29,62 @@ export default function (state = initialData, action) {
             }
 
         case "SAVE_CHARS":
-            return {...state, chars: action.payload}
+            return {...state, chars: action.payload, status: "success"}
         
         case "SET_STATUS":
             return {...state, status: action.payload }
 
+        case "FETCH_FAILED":
+            return {...state, status: "failure", error: action.payload}
+
         default: return state;
     }
 }
+
+export function fetchWithQueryEpic(action$){
+    return action$.pipe(
+        ofType("SEARCH"),
+        debounceTime(500), // sleep --> leida rxjs/operators
+        //filter(({payload})=>payload.trim() !== ""),
+        switchMap(({payload})=>{ // access to the action | payload = name
+            // if(!payload) return of({type: "NONE"})
+            const QUERY = `${API}?name=${payload}` // https://rickandmortyapi.com/api/character/?name=rick&status=alive
+            return concat(
+                of({type: "SET_STATUS", payload:"fetching"}),
+                ajax.getJSON(QUERY).pipe(
+                    map(resp=>({type:"SAVE_CHARS", payload:resp.results})),
+                    catchError(err=>{
+                        return of({type: "FETCH_FAILED", payload: err.message})
+                    })
+                )
+            )
+        })
+    )
+}
+
+// export function fetchWithQueryEpic(actions$){
+//     return actions$.pipe(
+//         ofType("SEARCH"),
+//         debounceTime(500),
+//         // filter(({payload})=>payload.trim() !== ""),
+//         switchMap(({payload})=>{
+//             // if(!payload) return of({type:"NONE"})
+//             const QUERY = `${API}?name=${payload}` // https://rickandmortyapi.com/api/character/?name=rick&status=alive
+//             return concat(
+//                 of(setStatus("fetching")),
+//                 ajax.getJSON(QUERY).pipe(
+//                     map(resp=>({
+//                         type: "SAVE_CHARS",
+//                         payload: resp.results
+//                     })),
+//                     // catchError(err=>{
+//                     //     return of({type: "FETCH_FAILED", payload: err.message})
+//                     // })
+//                 )
+//             )
+//         })
+//     )
+// }
 
 export function fetchCharsEpic(){ // thunk ? sort of
     return ajax.getJSON(API).pipe(

@@ -9,7 +9,8 @@ import charsReducer, { getCharsFromLocal } from './charsDuck'
 import {combineEpics, createEpicMiddleware} from "redux-observable";
 import {of} from "rxjs";
 import {delay} from "rxjs/operators";
-import appReducer, {fetchCharsEpic, fetchCharsOnDemand
+import appReducer, {fetchCharsEpic, fetchCharsOnDemand,
+    fetchWithQueryEpic
 }  from './observableDuck'
  
 
@@ -17,7 +18,8 @@ const epic1 = () => of({type: "SET_NAME", payload: "Blissito"}).pipe(delay(2000)
 
 const rootEpic = combineEpics(epic1, 
     fetchCharsEpic, 
-    fetchCharsOnDemand
+    fetchCharsOnDemand,
+    fetchWithQueryEpic
     );
 
 const epicMiddleware = createEpicMiddleware();
