@@ -44,7 +44,7 @@ export default function (state = initialData, action) {
             return {...state, status: "failure", error: action.payload}
 
         case "LOAD":
-            return {...state}
+            return { ...state }
 
         case "CHANGE":
             return { ...state, contactForm: action.payload }
@@ -62,7 +62,7 @@ export function contactFormEpic(action$){
     )
 }
 
-export function changeFormEpic(action$) {
+export function updateFormEpic(action$) {
     return action$.pipe(
         ofType("CHANGE_FORM"),
         switchMap(({ payload }) => {
