@@ -14,7 +14,7 @@ function App() {
     }}>
       <Form onSubmit={data=>{
         data.preventDefault()
-        console.dir(contactForm)
+        console.table(contactForm)
       }}/>
     </div>
   );
