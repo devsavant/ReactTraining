@@ -10,8 +10,9 @@ function App() {
       alignItems:"center",
       height:"100vh"
     }}>
-      <Form onSubmit={data=>{
+      <Form onSubmit={data => {
         console.log(data)
+       
       }}/>
     </div>
   );
