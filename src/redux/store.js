@@ -3,7 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import userReducer from './userDuck'
 import thunk from 'redux-thunk'
 import charsReducer, { getCharsFromLocal } from './charsDuck'
-import { reducer as formReducer } from 'redux-form'
+// import { reducer as formReducer } from 'redux-form'
 
 
 // RXJS
@@ -12,7 +12,8 @@ import {of} from "rxjs";
 import {delay} from "rxjs/operators";
 import appReducer, {fetchCharsEpic, fetchCharsOnDemand,
     fetchWithQueryEpic,
-    contactFormEpic
+    contactFormEpic,
+    changeFormEpic
 }  from './observableDuck'
  
 
@@ -22,7 +23,8 @@ const rootEpic = combineEpics(epic1,
     fetchCharsEpic, 
     fetchCharsOnDemand,
     fetchWithQueryEpic,
-    contactFormEpic
+    contactFormEpic,
+    changeFormEpic
     );
 
 const epicMiddleware = createEpicMiddleware();
@@ -33,12 +35,12 @@ const rootReducer = combineReducers({
     user:userReducer,
     chars:charsReducer,
     app: appReducer,
-    form: formReducer
+    // form: formReducer
 })
 
 export default () => {
     const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(
-                                                                                thunk, 
+                                                                                thunk,
                                                                                 epicMiddleware
                                                                                 )))
     // traer algo del api que siempre se usa
