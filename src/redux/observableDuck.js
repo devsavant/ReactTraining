@@ -43,12 +43,8 @@ export default function (state = initialData, action) {
             return {...state, contactForm:action.payload}
         
         case "UPDATE_FIELD":
-            let updatedContactForm = state.contactForm
             const {update} =  action
-            updatedContactForm[update.fieldName] = update.newValue
-            console.log('updatedContactForm');
-            console.dir(updatedContactForm );
-            return {...state, contactForm:updatedContactForm}
+            return {...state, contactForm:{...state['contactForm'], [update.fieldName]:update.newValue }}
 
         default: return state;
     }
