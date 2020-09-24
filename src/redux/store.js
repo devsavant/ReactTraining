@@ -12,7 +12,8 @@ import {of} from "rxjs";
 import {delay} from "rxjs/operators";
 import appReducer, {fetchCharsEpic, fetchCharsOnDemand,
     fetchWithQueryEpic,
-    contactFormEpic
+    contactFormEpic,
+    handleFormChangesEpic
 }  from './observableDuck'
  
 
@@ -22,7 +23,8 @@ const rootEpic = combineEpics(epic1,
     fetchCharsEpic, 
     fetchCharsOnDemand,
     fetchWithQueryEpic,
-    contactFormEpic
+    contactFormEpic,
+    handleFormChangesEpic
     );
 
 const epicMiddleware = createEpicMiddleware();

@@ -41,9 +41,23 @@ export default function (state = initialData, action) {
 
         case "LOAD":
             return {...state, contactForm:action.payload}
+        
+        case "UPDATE_FIELD":
+            const {update} =  action
+            return {...state, contactForm:{...state['contactForm'], [update.fieldName]:update.newValue }}
 
         default: return state;
     }
+}
+
+
+export function handleFormChangesEpic(action$){
+    return action$.pipe(
+        ofType("UPDATE"),
+        switchMap(({fieldName,newValue})=>{
+            return of({type:"UPDATE_FIELD", update:{newValue,fieldName}})
+        })
+    )
 }
 
 export function contactFormEpic(action$){
