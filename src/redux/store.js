@@ -3,6 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import userReducer from './userDuck'
 import thunk from 'redux-thunk'
 import charsReducer, { getCharsFromLocal } from './charsDuck'
+import { reducer as formReducer } from 'redux-form'
 
 
 // RXJS
@@ -10,7 +11,8 @@ import {combineEpics, createEpicMiddleware} from "redux-observable";
 import {of} from "rxjs";
 import {delay} from "rxjs/operators";
 import appReducer, {fetchCharsEpic, fetchCharsOnDemand,
-    fetchWithQueryEpic
+    fetchWithQueryEpic,
+    contactFormEpic
 }  from './observableDuck'
  
 
@@ -19,7 +21,8 @@ const epic1 = () => of({type: "SET_NAME", payload: "Blissito"}).pipe(delay(2000)
 const rootEpic = combineEpics(epic1, 
     fetchCharsEpic, 
     fetchCharsOnDemand,
-    fetchWithQueryEpic
+    fetchWithQueryEpic,
+    contactFormEpic
     );
 
 const epicMiddleware = createEpicMiddleware();
@@ -29,7 +32,8 @@ const epicMiddleware = createEpicMiddleware();
 const rootReducer = combineReducers({
     user:userReducer,
     chars:charsReducer,
-    app: appReducer
+    app: appReducer,
+    form: formReducer
 })
 
 export default () => {

@@ -1,5 +1,6 @@
 import {ajax} from 'rxjs/ajax'
-import {ignoreElements, tap,
+import {
+    // ignoreElements, tap,
     map,
     switchMap,
     debounceTime, 
@@ -15,7 +16,8 @@ const initialData = {
     name: "Guillito",
     chars:[],
     status:"idle", // idle || fetching || success
-    error:null
+    error:null,
+    contactForm:{}
 }
 
 const API = "https://rickandmortyapi.com/api/character"
@@ -37,15 +39,27 @@ export default function (state = initialData, action) {
         case "FETCH_FAILED":
             return {...state, status: "failure", error: action.payload}
 
+        case "LOAD":
+            return {...state, contactForm:action.payload}
+
         default: return state;
     }
+}
+
+export function contactFormEpic(action$){
+    return action$.pipe(
+        ofType("POPULATE_FORM"),
+        switchMap(({payload})=>{
+            return of({type:"LOAD", payload})
+        })
+    )
 }
 
 export function fetchWithQueryEpic(action$){
     return action$.pipe(
         ofType("SEARCH"),
-        debounceTime(500), // sleep --> leida rxjs/operators
-        //filter(({payload})=>payload.trim() !== ""),
+        debounceTime(500), // sleep --> leída rxjs/operators
+        filter(({payload})=>payload.trim() !== ""),
         switchMap(({payload})=>{ // access to the action | payload = name
             // if(!payload) return of({type: "NONE"})
             const QUERY = `${API}?name=${payload}` // https://rickandmortyapi.com/api/character/?name=rick&status=alive
