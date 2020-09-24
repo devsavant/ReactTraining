@@ -29,9 +29,6 @@ export const transformTokenAction = (token) => (dispatch) => {
     })
 }
 
-export const transformDisplayNameAction = (value) => dispatch => {
-    dispatch({
-        type: TRANSFORM_DISPLAY_NAME,
-        payload: value
-    })
-}
+// thunk getUsers 
+// Ò
+// thunk login

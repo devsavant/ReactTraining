@@ -1,15 +1,8 @@
 import React from 'react';
 import './App.css';
-import Cicle from './components/life/Cicle';
-import FunctionCicle from './components/life/FunctionCicle';
-import Routes from './Routes';
-import { NavLink } from 'react-router-dom';
-
+import Form from './components/reduxForm/Form';
 
 function App() {
-
-  const onToggle = (...rest) => console.log(...rest)
-
   return (
     <div style={{
       display:"flex",
@@ -17,19 +10,9 @@ function App() {
       alignItems:"center",
       height:"100vh"
     }}>
-      {/* <NavLink to="/" >
-        home
-      </NavLink>
-      {" | "}
-      <NavLink to="/classtimer" >
-        ClassTimer
-      </NavLink>
-      {" | "}
-      <NavLink to="/timer" >
-        timer
-      </NavLink>
-      <Cicle /> */}
-      <Routes />
+      <Form onSubmit={data=>{
+        console.log(data)
+      }}/>
     </div>
   );
 }
