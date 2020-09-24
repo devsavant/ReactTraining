@@ -41,7 +41,10 @@ export default function (state = initialData, action) {
 
         case "LOAD":
             return {...state, contactForm:action.payload}
-
+        case "CHANGE":
+            const contactForm = state.contactForm
+            contactForm[action.payload.key] = action.payload.value
+            return {...state, contactForm }
         default: return state;
     }
 }
@@ -51,6 +54,15 @@ export function contactFormEpic(action$){
         ofType("POPULATE_FORM"),
         switchMap(({payload})=>{
             return of({type:"LOAD", payload})
+        })
+    )
+}
+
+export function updateFormEpic(action$) {
+    return action$.pipe(
+        ofType("CHANGE_FORM"),
+        switchMap(({payload}) => {
+            return of({type: "CHANGE", payload})
         })
     )
 }

@@ -14,6 +14,9 @@ const Form = ({onSubmit}) => {
     const load = () => {
         dispatch({type:"POPULATE_FORM", payload:data})
     }
+    const handleChange = (event) => {
+      dispatch({type: "CHANGE_FORM", payload: {key: event.target.name, value: event.target.value}})
+    }
     return ( 
     <>
             <button 
@@ -25,17 +28,17 @@ const Form = ({onSubmit}) => {
         <form onSubmit={onSubmit}>
         <p>
           <label htmlFor="firstName">First Name</label>
-          <input value={firstName} name="firstName" type="text" />
+          <input value={firstName} onChange={handleChange} name="firstName" type="text" />
         </p>
         <p>
           <label htmlFor="lastName">Last Name</label>
-          <input value={lastName} name="lastName" type="text" />
+          <input value={lastName} onChange={handleChange} name="lastName" type="text" />
         </p>
         <p>
           <label htmlFor="email">Email</label>
-          <input value={email} name="email" type="email" />
+          <input value={email} onChange={handleChange} name="email" type="email" />
         </p> 
-        <input value="Enviar" type="submit"/>
+        <input value="Enviar" onChange={handleChange} type="submit"/>
       </form>
       </>
      );
