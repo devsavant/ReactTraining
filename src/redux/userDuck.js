@@ -25,3 +25,7 @@ export const transformTokenAction = (token) => (dispatch) => {
         payload: token
     })
 }
+
+// thunk getUsers 
+// Ò
+// thunk login

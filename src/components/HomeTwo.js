@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { transformTokenAction } from '../redux/userDuck'
+import { Link } from 'react-router-dom'
 
 const HomeTwo = ({ token, displayName, transformTokenAction }) => {
   const [state, setState] = useState('');
@@ -15,6 +16,7 @@ const HomeTwo = ({ token, displayName, transformTokenAction }) => {
 
     return (
         <div>
+            <Link to="/chars" >Chars</Link>
             <h2>Home with redux, welcome {displayName}</h2>
             <h3>{token}</h3>
             <input value={state.token} onChange={onChange} placeholder="escribe tu token" name="token"/>
