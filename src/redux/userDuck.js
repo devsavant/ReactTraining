@@ -4,6 +4,7 @@ const initialState = {
 
 const GET_TOKEN_FROM_LOCAL = "GET_TOKEN_FROM_LOCAL"
 const TRANSFORM_TOKEN = "TRANSFORM_TOKEN"
+const TRANSFORM_DISPLAY_NAME = "TRANSFORM_DISPLAY_NAME"
 
 export default (state=initialState, action) => {
     switch(action.type){
@@ -11,6 +12,8 @@ export default (state=initialState, action) => {
             return {...state, token: "olavvque+puez"}
         case TRANSFORM_TOKEN:
             return { ...state, token: action.payload }
+        case TRANSFORM_DISPLAY_NAME:
+            return { ...state, displayName: action.payload }
         default:
             return state
     }

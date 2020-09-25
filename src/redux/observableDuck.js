@@ -3,7 +3,7 @@ import {
     // ignoreElements, tap,
     map,
     switchMap,
-    debounceTime, 
+    debounceTime,
     filter,
     catchError
 } from 'rxjs/operators'
@@ -17,14 +17,18 @@ const initialData = {
     chars:[],
     status:"idle", // idle || fetching || success
     error:null,
-    contactForm:{}
+    contactForm:{
+        firstName: 'Blissito',
+        lastName: 'Campos',
+        email: 'bliss@fixter.org'
+    }
 }
 
 const API = "https://rickandmortyapi.com/api/character"
 
 export default function (state = initialData, action) {
     switch (action.type) {
-        case "SET_NAME": 
+        case "SET_NAME":
             return {
                 ...state,
                 name: action.payload
@@ -32,7 +36,7 @@ export default function (state = initialData, action) {
 
         case "SAVE_CHARS":
             return {...state, chars: action.payload, status: "success"}
-        
+
         case "SET_STATUS":
             return {...state, status: action.payload }
 
@@ -40,7 +44,10 @@ export default function (state = initialData, action) {
             return {...state, status: "failure", error: action.payload}
 
         case "LOAD":
-            return {...state, contactForm:action.payload}
+            return { ...state }
+
+        case "CHANGE":
+            return { ...state, contactForm: action.payload }
 
         default: return state;
     }
@@ -51,6 +58,15 @@ export function contactFormEpic(action$){
         ofType("POPULATE_FORM"),
         switchMap(({payload})=>{
             return of({type:"LOAD", payload})
+        })
+    )
+}
+
+export function updateFormEpic(action$) {
+    return action$.pipe(
+        ofType("CHANGE_FORM"),
+        switchMap(({ payload }) => {
+            return of({ type: "CHANGE", payload })
         })
     )
 }
