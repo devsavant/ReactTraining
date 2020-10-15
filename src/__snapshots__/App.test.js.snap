@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Enzyme tests Renderizado correcto 1`] = `ShallowWrapper {}`;
+
 exports[`Using snapshots should match snapshot 1`] = `
 <div
   style={
@@ -12,6 +14,10 @@ exports[`Using snapshots should match snapshot 1`] = `
     }
   }
 >
+  <img
+    alt="logo"
+    src=""
+  />
   <div>
     <button
       onClick={[Function]}
@@ -23,31 +29,23 @@ exports[`Using snapshots should match snapshot 1`] = `
       </p>
     </button>
   </div>
-</div>
-`;
-
-exports[`should match snapshot 1`] = `
-<div
-  style={
-    Object {
-      "alignItems": "center",
-      "display": "flex",
-      "flexDirection": "column",
-      "height": "100vh",
-      "justifyContent": "center",
-    }
-  }
->
-  <div>
-    <button
-      onClick={[Function]}
-    >
-      <p
-        className="red_text"
-      >
-        Puchame!
-      </p>
-    </button>
-  </div>
+  <p
+    className="bliss"
+    id="pepe"
+  >
+    Shallow
+  </p>
+  <span
+    id="test"
+  >
+    Hello 
+    Blissito
+  </span>
+  <p>
+    
+  </p>
+  <input
+    onChange={[Function]}
+  />
 </div>
 `;
