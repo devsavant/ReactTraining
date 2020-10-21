@@ -1,33 +1,9 @@
-import React, {useState} from 'react';
+import React, {lazy, Suspense} from 'react';
 import './App.css';
-import Button from './components/written/Button';
-// import TestRenderer from 'react-test-renderer'
+import Home from './components/suspense/Home'
 
-export class Test extends React.Component{
-  state = {
-    name: "Blissito",
-    email: ''
-  }
-
-  sendForm = (form) => {
-    return "yes!"
-  }
-
-  render(){
-    return (<>
-      <span id="test" >Hello {this.state.name}</span>
-      <p>{this.state.email}</p>
-      <input onChange={e=>this.setState({email: e.target.value})} />
-    </>)
-  }
-}
 
 function App() {
-  const [counter, setCounter] = useState(0)
-
-  // function sendForm(){
-  //   return true
-  // }
 
   return (
     <div style={{
@@ -37,19 +13,10 @@ function App() {
       alignItems:"center",
       height:"100vh"
     }}>
-      <img src="" alt="logo" />
-      {counter > 0 && <h2 >{counter}</h2>}
-      <Button onClick={()=>{
-        setCounter(counter+1)
-      }} >
-        Puchame!
-      </Button>
-      <p id="pepe" className="bliss">Shallow</p>
-      <Test />
+        <h2>Mi Pan zuzu</h2>
+            <Home />
     </div>
   );
 }
-
-// console.log(TestRenderer.create(<App/>).toJSON())
 
 export default App;

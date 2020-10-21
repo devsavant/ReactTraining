@@ -43,7 +43,7 @@ export default () => {
     // store.dispatch({
     //     type:"GET_CHARS_FROM_LOCAL"
     // })
-    getCharsFromLocal()(store.dispatch)
-    epicMiddleware.run(rootEpic); // siendo observado
+    // getCharsFromLocal()(store.dispatch)
+    // epicMiddleware.run(rootEpic); // siendo observado
     return store
 }

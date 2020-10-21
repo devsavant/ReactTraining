@@ -55,7 +55,7 @@ describe("Enzyme tests", ()=>{
 
   it("checking on methods", ()=>{
     const wrapper = shallow(<Test/>)
-    const result = wrapper.instance().sendForm()
+    const result = wrapper.instance().sendForm() // class components
     expect(result).toBe("yes!")
   })
 
