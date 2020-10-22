@@ -12,17 +12,36 @@ const store = generateStore()
 
 const WithRedux = () => <Provider store={store}><App/></Provider>
 
-ReactDOM.render(
-  <BrowserRouter>
-    <React.StrictMode>
-        <AuthContextProvider >
-          <WithRedux />
-        </AuthContextProvider>
-    </React.StrictMode>
-  </BrowserRouter>,
-  document.getElementById('root')
-);
-
+// ReactDOM.render(
+//   <BrowserRouter>
+//     <React.StrictMode>
+//         <AuthContextProvider >
+//           <WithRedux />
+//         </AuthContextProvider>
+//     </React.StrictMode>
+//   </BrowserRouter>,
+//   document.getElementById('root')
+// );
+ReactDOM.unstable_createRoot(document.getElementById('root'))
+.render(  
+<BrowserRouter>
+  <React.StrictMode>
+      <AuthContextProvider >
+        <WithRedux />
+      </AuthContextProvider>
+  </React.StrictMode>
+</BrowserRouter>
+)
+// ReactDOM.unstable_createRoot(document.getElementById('root'))
+//   .render(
+//   <BrowserRouter>
+//   <React.StrictMode>
+//       <AuthContextProvider >
+//         <WithRedux />
+//       </AuthContextProvider>
+//   </React.StrictMode>
+// </BrowserRouter>,
+// )
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA

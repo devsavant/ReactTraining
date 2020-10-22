@@ -3,7 +3,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import userReducer from './userDuck'
 import thunk from 'redux-thunk'
 import charsReducer, { getCharsFromLocal } from './charsDuck'
-import { reducer as formReducer } from 'redux-form'
 
 
 // RXJS
@@ -32,8 +31,7 @@ const epicMiddleware = createEpicMiddleware();
 const rootReducer = combineReducers({
     user:userReducer,
     chars:charsReducer,
-    app: appReducer,
-    form: formReducer
+    app: appReducer
 })
 
 export default () => {
@@ -45,7 +43,7 @@ export default () => {
     // store.dispatch({
     //     type:"GET_CHARS_FROM_LOCAL"
     // })
-    getCharsFromLocal()(store.dispatch)
-    epicMiddleware.run(rootEpic); // siendo observado
+    // getCharsFromLocal()(store.dispatch)
+    // epicMiddleware.run(rootEpic); // siendo observado
     return store
 }
