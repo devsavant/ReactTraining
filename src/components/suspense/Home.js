@@ -1,5 +1,6 @@
 import React, {Suspense} from 'react';
-import CharDisplay from './CharDisplay'
+// import CharDisplay from './CharDisplay'
+import CharList from './CharList'
 import ErrorBoundary from './ErrorBoundary'
 
 const Home = () => { 
@@ -9,12 +10,10 @@ const Home = () => {
                 RickyMorty
                 <hr width="10%"/>
                 {/* {renderChars()} */}
-                <CharDisplay />
+                {/* <CharDisplay /> */}
+                <CharList />
             </Suspense>
         </ErrorBoundary>
-
-        
     );
 }
- 
 export default Home;

@@ -5,7 +5,7 @@ const rick = suspensify(fetch('https://rickandmortyapi.com/api/character/1').the
 
 
 const CharDisplay = () => {
-    return ( 
+    return (
         <div>
             <h2 >Personaje : {rick.read().name}</h2>
         </div>
